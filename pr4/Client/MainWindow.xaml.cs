@@ -198,7 +198,7 @@ namespace Client
 
                 if (files == null)
                 {
-                    Console.WriteLine("Files list is null");
+                    Console.WriteLine("None Files");
                     return;
                 }
 
