@@ -21,8 +21,8 @@
         <!-- Connection Panel -->
         <GroupBox Grid.Row="0" Grid.ColumnSpan="2" Header="Connection" Margin="5">
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="txtLogin" Width="120" Margin="5" Text="tychcl"/>
-                <PasswordBox x:Name="txtPassword" Width="120" Margin="5" Password="f1l1n"/>
+                <TextBox x:Name="txtLogin" Width="120" Margin="5" Text="1"/>
+                <PasswordBox x:Name="txtPassword" Width="120" Margin="5" Password="1"/>
                 <Button x:Name="btnConnect" Content="Connect" Click="BtnConnect_Click" Margin="5" Width="80"/>
                 <TextBlock x:Name="txtConnectionStatus" Margin="5" VerticalAlignment="Center" Foreground="Blue"/>
             </StackPanel>

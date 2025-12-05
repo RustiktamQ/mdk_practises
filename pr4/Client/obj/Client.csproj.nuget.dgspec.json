@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\pr4\\Client\\Client.csproj": {}
+    "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\pr4\\Client\\Client.csproj": {
+    "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\pr4\\Client\\Client.csproj",
+        "projectUniqueName": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\Client.csproj",
         "projectName": "Client",
-        "projectPath": "C:\\Users\\User\\Desktop\\pr4\\Client\\Client.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\pr4\\Client\\obj\\",
+        "projectPath": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\Client.csproj",
+        "packagesPath": "C:\\Users\\student-a502.PERMAVIAT\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\Microsoft Update Health Tools\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student-a502.PERMAVIAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0-windows7.0": {
             "targetAlias": "net9.0-windows",
             "projectReferences": {
-              "C:\\Users\\User\\Desktop\\pr4\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\User\\Desktop\\pr4\\Common\\Common.csproj"
+              "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Common\\Common.csproj"
               }
             }
           }
@@ -48,7 +49,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0-windows7.0": {
@@ -70,12 +71,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.301, 9.0.301]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -84,24 +79,24 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\Desktop\\pr4\\Common\\Common.csproj": {
+    "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\pr4\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\User\\Desktop\\pr4\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\pr4\\Common\\obj\\",
+        "projectPath": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\student-a502.PERMAVIAT\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\Microsoft Update Health Tools\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\student-a502.PERMAVIAT\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -110,6 +105,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -128,7 +124,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -150,18 +146,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.Net.Sdk.Compilers.Toolset",
-              "version": "[9.0.301, 9.0.301]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -47,11 +47,11 @@ namespace Client
 
                 if (Connected)
                 {
-                    //Application.Current.Dispatcher.Invoke(() =>
-                    //{
-                    //    MessageBox.Show($"Successfully connected to {Ip}:{Port}",
-                    //        "Connection", MessageBoxButton.OK, MessageBoxImage.Information);
-                    //});
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        MessageBox.Show($"Successfully connected to {Ip}:{Port}",
+                            "Connection", MessageBoxButton.OK, MessageBoxImage.Information);
+                    });
                     return true;
                 }
             }
