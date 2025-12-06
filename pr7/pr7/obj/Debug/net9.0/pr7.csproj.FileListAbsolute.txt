@@ -27,3 +27,12 @@ C:\Users\User\Desktop\mdk практики\pr7\pr7\obj\Debug\net9.0\refint\pr7.d
 C:\Users\User\Desktop\mdk практики\pr7\pr7\obj\Debug\net9.0\pr7.pdb
 C:\Users\User\Desktop\mdk практики\pr7\pr7\obj\Debug\net9.0\pr7.genruntimeconfig.cache
 C:\Users\User\Desktop\mdk практики\pr7\pr7\obj\Debug\net9.0\ref\pr7.dll
+C:\Users\User\Desktop\mdk практики\pr7\pr7\bin\Debug\net9.0\Fizzler.dll
+C:\Users\User\Desktop\mdk практики\pr7\pr7\bin\Debug\net9.0\HtmlAgilityPack.dll
+C:\Users\User\Desktop\mdk практики\pr7\pr7\obj\Debug\net9.0\pr7.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\mdk практики\pr7\pr7\obj\Debug\net9.0\pr7.csproj.Up2Date
+C:\Users\User\Desktop\mdk практики\pr7\pr7\bin\Debug\net9.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\User\Desktop\mdk практики\pr7\pr7\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\User\Desktop\mdk практики\pr7\pr7\bin\Debug\net9.0\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Users\User\Desktop\mdk практики\pr7\pr7\bin\Debug\net9.0\Nancy.dll
+C:\Users\User\Desktop\mdk практики\pr7\pr7\bin\Debug\net9.0\Newtonsoft.Json.dll
