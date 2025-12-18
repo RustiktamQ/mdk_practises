@@ -81,3 +81,10 @@ C:\Users\student-a502.PERMAVIAT\Desktop\mdk_practises\pr4\Client\obj\Debug\net9.
 C:\Users\student-a502.PERMAVIAT\Desktop\mdk_practises\pr4\Client\obj\Debug\net9.0-windows\Client.pdb
 C:\Users\student-a502.PERMAVIAT\Desktop\mdk_practises\pr4\Client\obj\Debug\net9.0-windows\Client.genruntimeconfig.cache
 C:\Users\student-a502.PERMAVIAT\Desktop\mdk_practises\pr4\Client\obj\Debug\net9.0-windows\ref\Client.dll
+C:\Users\User\Desktop\mdk практики\pr4\Client\obj\Debug\net9.0-windows\Client.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\mdk практики\pr4\Client\obj\Debug\net9.0-windows\MainWindow.g.cs
+C:\Users\User\Desktop\mdk практики\pr4\Client\obj\Debug\net9.0-windows\Client_MarkupCompile.cache
+C:\Users\User\Desktop\mdk практики\pr4\Client\obj\Debug\net9.0-windows\Client_MarkupCompile.lref
+C:\Users\User\Desktop\mdk практики\pr4\Client\obj\Debug\net9.0-windows\Client.dll
+C:\Users\User\Desktop\mdk практики\pr4\Client\obj\Debug\net9.0-windows\refint\Client.dll
+C:\Users\User\Desktop\mdk практики\pr4\Client\obj\Debug\net9.0-windows\Client.pdb

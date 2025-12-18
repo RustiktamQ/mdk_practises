@@ -14,7 +14,7 @@ namespace Server.Classes
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user=root;password=;database=pr4;port=3306;",
+            optionsBuilder.UseMySql("server=localhost;user=root;password=;database=pr4;port=3307;",
                 new MySqlServerVersion(new Version(8, 0, 30)));
         }
     }

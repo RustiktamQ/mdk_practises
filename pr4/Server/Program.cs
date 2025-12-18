@@ -16,7 +16,7 @@ namespace Server
     {
         public static List<User> Users = new List<User>();
         public static IPAddress IpAddress = IPAddress.Any;
-        public static int Port = 5001;
+        public static int Port = 5000;
 
         static async Task Main(string[] args)
         {

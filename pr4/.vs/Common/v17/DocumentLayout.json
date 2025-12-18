@@ -1,22 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4E95A8F0-8D2A-4B48-968F-DC266E94F7AD}|Server\\Server.csproj|c:\\users\\student-a502.permaviat\\desktop\\mdk_practises\\pr4\\server\\classes\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E95A8F0-8D2A-4B48-968F-DC266E94F7AD}|Server\\Server.csproj|solutionrelative:server\\classes\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2ECAEB3E-DF28-492A-A5C0-16AACADF3DD0}|ClientConsole\\ClientConsole.csproj|c:\\users\\user\\desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\clientconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2ECAEB3E-DF28-492A-A5C0-16AACADF3DD0}|ClientConsole\\ClientConsole.csproj|solutionrelative:clientconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1897E7E-0CB8-4471-A4F2-F091A6F0CAB4}|Client\\Client.csproj|c:\\users\\student-a502.permaviat\\desktop\\mdk_practises\\pr4\\client\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1897E7E-0CB8-4471-A4F2-F091A6F0CAB4}|Client\\Client.csproj|solutionrelative:client\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4E95A8F0-8D2A-4B48-968F-DC266E94F7AD}|Server\\Server.csproj|c:\\users\\user\\desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\server\\classes\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4E95A8F0-8D2A-4B48-968F-DC266E94F7AD}|Server\\Server.csproj|solutionrelative:server\\classes\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4E95A8F0-8D2A-4B48-968F-DC266E94F7AD}|Server\\Server.csproj|c:\\users\\student-a502.permaviat\\desktop\\mdk_practises\\pr4\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4E95A8F0-8D2A-4B48-968F-DC266E94F7AD}|Server\\Server.csproj|solutionrelative:server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B119B09F-2EA0-41C0-92AB-4C292CD20208}|Common\\Common.csproj|c:\\users\\user\\desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\common\\fileinfoftp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B119B09F-2EA0-41C0-92AB-4C292CD20208}|Common\\Common.csproj|solutionrelative:common\\fileinfoftp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1897E7E-0CB8-4471-A4F2-F091A6F0CAB4}|Client\\Client.csproj|c:\\users\\student-a502.permaviat\\desktop\\mdk_practises\\pr4\\client\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A1897E7E-0CB8-4471-A4F2-F091A6F0CAB4}|Client\\Client.csproj|solutionrelative:client\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B119B09F-2EA0-41C0-92AB-4C292CD20208}|Common\\Common.csproj|c:\\users\\user\\desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\common\\viewmodelmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B119B09F-2EA0-41C0-92AB-4C292CD20208}|Common\\Common.csproj|solutionrelative:common\\viewmodelmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B119B09F-2EA0-41C0-92AB-4C292CD20208}|Common\\Common.csproj|c:\\users\\user\\desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\common\\viewmodelsend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B119B09F-2EA0-41C0-92AB-4C292CD20208}|Common\\Common.csproj|solutionrelative:common\\viewmodelsend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,56 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Server.cs",
-              "DocumentMoniker": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\Server.cs",
-              "RelativeDocumentMoniker": "Client\\Server.cs",
-              "ToolTip": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\Server.cs",
-              "RelativeToolTip": "Client\\Server.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACwAAAA0AAAAAAAAAA==",
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\Server\\Classes\\User.cs",
+              "RelativeDocumentMoniker": "Server\\Classes\\User.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\Server\\Classes\\User.cs",
+              "RelativeToolTip": "Server\\Classes\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T08:50:02.976Z",
+              "WhenOpened": "2025-12-18T06:54:16.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FileInfoFTP.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\Common\\FileInfoFTP.cs",
+              "RelativeDocumentMoniker": "Common\\FileInfoFTP.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\Common\\FileInfoFTP.cs",
+              "RelativeToolTip": "Common\\FileInfoFTP.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T06:54:12.085Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Client\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Client\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Client\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAuwDsAAAA0AAAAAAAAAA==",
+              "Title": "ViewModelMessage.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\Common\\ViewModelMessage.cs",
+              "RelativeDocumentMoniker": "Common\\ViewModelMessage.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\Common\\ViewModelMessage.cs",
+              "RelativeToolTip": "Common\\ViewModelMessage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T08:47:50.174Z"
+              "WhenOpened": "2025-12-18T06:54:07.907Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Server\\Program.cs",
-              "RelativeDocumentMoniker": "Server\\Program.cs",
-              "ToolTip": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Server\\Program.cs",
-              "RelativeToolTip": "Server\\Program.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAnwKwAAAARAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ViewModelSend.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\Common\\ViewModelSend.cs",
+              "RelativeDocumentMoniker": "Common\\ViewModelSend.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\Common\\ViewModelSend.cs",
+              "RelativeToolTip": "Common\\ViewModelSend.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T08:46:08.287Z"
+              "WhenOpened": "2025-12-18T06:53:55.232Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "context.cs",
-              "DocumentMoniker": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Server\\Classes\\context.cs",
-              "RelativeDocumentMoniker": "Server\\Classes\\context.cs",
-              "ToolTip": "C:\\Users\\student-a502.PERMAVIAT\\Desktop\\mdk_practises\\pr4\\Server\\Classes\\context.cs",
-              "RelativeToolTip": "Server\\Classes\\context.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABWAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\ClientConsole\\Program.cs",
+              "RelativeDocumentMoniker": "ClientConsole\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\mdk \u043F\u0440\u0430\u043A\u0442\u0438\u043A\u0438\\pr4\\ClientConsole\\Program.cs",
+              "RelativeToolTip": "ClientConsole\\Program.cs",
+              "ViewState": "AgIAAM4BAAAAAAAAAADwv+cBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-05T08:40:02.639Z",
+              "WhenOpened": "2025-12-18T06:51:33.135Z",
               "EditorCaption": ""
             }
           ]
