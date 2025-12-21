@@ -1,300 +1,178 @@
 ﻿using Common;
 using Server.Classes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Net.Mime;
 
 namespace Server
 {
     class Program
     {
-        public static List<User> Users = new List<User>();
+        public static List<User> Users = new();
         public static IPAddress IpAddress = IPAddress.Any;
         public static int Port = 5000;
 
-        static async Task Main(string[] args)
+        static async Task Main()
         {
-            try
+            using (var context = new context())
             {
-                using (var context = new context())
-                {
-                    context.Database.EnsureCreated();
-                    Users = context.Users.ToList();
-                    Console.WriteLine($"Loaded {Users.Count} users from database");
-                }
-
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"Server starting on Port: {Port}");
-                await StartAsync();
+                context.Database.EnsureCreated();
+                Users = context.Users.ToList();
+                Console.WriteLine($"Loaded {Users.Count} users from database");
             }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Server startup error: {ex.Message}");
-                Console.ReadLine();
-            }
-        }
 
-        public static bool AuthorizationUser(string login, string password)
-        {
-            User user = Users.Find(x => x.Login == login && x.Password == password);
-            return user is not null;
-        }
-
-        public static List<string> GetDirectory(string src)
-        {
-            List<string> dir = new List<string>();
-            if (Directory.Exists(src))
-            {
-                try
-                {
-                    string[] dirs = Directory.GetDirectories(src);
-                    foreach (string dirName in dirs)
-                    {
-                        string Name = dirName.Replace(src, "").TrimStart('\\', '/');
-                        dir.Add(Name + "/");
-                    }
-                    string[] files = Directory.GetFiles(src);
-                    foreach (string file in files)
-                    {
-                        string Name = file.Replace(src, "").TrimStart('\\', '/');
-                        dir.Add(Name);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Directory error: {ex.Message}");
-                }
-            }
-            return dir;
+            Console.WriteLine($"Server started on port {Port}");
+            await StartAsync();
         }
 
         public static async Task StartAsync()
         {
+            var listener = new TcpListener(IpAddress, Port);
+            listener.Start();
+
+            while (true)
+            {
+                var client = await listener.AcceptTcpClientAsync();
+                _ = Task.Run(() => HandleClientAsync(client));
+            }
+        }
+
+        private static async Task HandleClientAsync(TcpClient client)
+        {
+            Console.WriteLine($"Client connected: {client.Client.RemoteEndPoint}");
+            using var stream = client.GetStream();
+
             try
             {
-                IPEndPoint endPoint = new IPEndPoint(IpAddress, Port);
-                Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-                listener.Bind(endPoint);
-                listener.Listen(10);
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Server started and listening for connections...");
-
                 while (true)
                 {
-                    Socket handler = await listener.AcceptAsync();
-                    _ = Task.Run(() => HandleClientAsync(handler));
+                    // ---- READ LENGTH ----
+                    byte[] lengthBuf = new byte[4];
+                    int read = await ReadExactAsync(stream, lengthBuf, 4);
+                    if (read == 0) break;
+
+                    int length = BitConverter.ToInt32(lengthBuf, 0);
+
+                    // ---- READ JSON ----
+                    byte[] dataBuf = new byte[length];
+                    await ReadExactAsync(stream, dataBuf, length);
+
+                    string json = Encoding.UTF8.GetString(dataBuf);
+                    var request = JsonConvert.DeserializeObject<ViewModelSend>(json);
+
+                    var response = await ProcessCommandAsync(request);
+
+                    // ---- SEND RESPONSE ----
+                    byte[] responseBytes = Encoding.UTF8.GetBytes(response);
+                    byte[] responseLen = BitConverter.GetBytes(responseBytes.Length);
+
+                    await stream.WriteAsync(responseLen);
+                    await stream.WriteAsync(responseBytes);
+                    await stream.FlushAsync();
+
+                    if (request.Message == "exit")
+                        break;
                 }
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Server error: {ex.Message}");
+                Console.WriteLine($"Client error: {ex.Message}");
             }
+
+            client.Close();
+            Console.WriteLine("Client disconnected");
         }
 
-        private static async Task HandleClientAsync(Socket handler)
+        private static async Task<int> ReadExactAsync(NetworkStream stream, byte[] buffer, int size)
         {
-            string clientInfo = handler.RemoteEndPoint?.ToString() ?? "unknown";
-            Console.WriteLine($"Client connected: {clientInfo}");
-
-            try
+            int total = 0;
+            while (total < size)
             {
-                byte[] buffer = new byte[400000000];
-                int bytesRec = await handler.ReceiveAsync(new ArraySegment<byte>(buffer), SocketFlags.None);
-
-                if (bytesRec == 0)
-                {
-                    Console.WriteLine($"Client {clientInfo} disconnected");
-                    return;
-                }
-
-                string data = Encoding.UTF8.GetString(buffer, 0, bytesRec);
-                Console.WriteLine($"Received from {clientInfo}: {data}");
-
-                ViewModelSend viewModelSend = JsonConvert.DeserializeObject<ViewModelSend>(data);
-                string reply = await ProcessCommandAsync(viewModelSend);
-
-                byte[] message = Encoding.UTF8.GetBytes(reply);
-                await handler.SendAsync(new ArraySegment<byte>(message), SocketFlags.None);
-
-                // Логируем команду в БД
-                if (viewModelSend != null && viewModelSend.Id != -1)
-                {
-                    await LogCommandAsync(viewModelSend);
-                }
+                int read = await stream.ReadAsync(buffer, total, size - total);
+                if (read == 0) return 0;
+                total += read;
             }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"Error with client {clientInfo}: {ex.Message}");
-            }
-            finally
-            {
-                try
-                {
-                    handler.Shutdown(SocketShutdown.Both);
-                    handler.Close();
-                    Console.WriteLine($"Client {clientInfo} disconnected");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error closing client {clientInfo}: {ex.Message}");
-                }
-            }
+            return total;
         }
 
-        private static async Task<string> ProcessCommandAsync(ViewModelSend viewModelSend)
+        private static async Task<string> ProcessCommandAsync(ViewModelSend vm)
         {
-            if (viewModelSend == null)
-            {
-                return JsonConvert.SerializeObject(new ViewModelMessage("message", "Invalid request"));
-            }
-
-            ViewModelMessage viewModelMessage;
-            string[] dataCommand = viewModelSend.Message.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
             try
             {
-                if (viewModelSend.Id == -1 && dataCommand[0] != "connect")
-                {
+                var parts = vm.Message.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                if (vm.Id == -1 && parts[0] != "connect")
                     return JsonConvert.SerializeObject(new ViewModelMessage("message", "Need authorization"));
-                }
 
-                switch (dataCommand[0])
+                switch (parts[0])
                 {
                     case "connect":
-                        if (dataCommand.Length >= 3 && AuthorizationUser(dataCommand[1], dataCommand[2]))
-                        {
-                            int userId = Users.FindIndex(x => x.Login == dataCommand[1] && x.Password == dataCommand[2]);
-                            viewModelMessage = new ViewModelMessage("autorization", userId.ToString());
-                        }
-                        else
-                        {
-                            viewModelMessage = new ViewModelMessage("message", "Invalid login or password");
-                        }
-                        break;
+                        var user = Users.FirstOrDefault(x => x.Login == parts[1] && x.Password == parts[2]);
+                        return user != null
+                            ? JsonConvert.SerializeObject(new ViewModelMessage("autorization", Users.IndexOf(user).ToString()))
+                            : JsonConvert.SerializeObject(new ViewModelMessage("message", "Invalid login"));
 
                     case "cd":
-                        Console.WriteLine("Processing CD command...");
-                        var user = Users.ElementAtOrDefault(viewModelSend.Id);
-                        if (user == null)
-                        {
-                            Console.WriteLine($"User not found for ID: {viewModelSend.Id}");
-                            viewModelMessage = new ViewModelMessage("message", "User not found");
-                            break;
-                        }
-
-                        Console.WriteLine($"User: {user.Login}, Current Src: {user.Src}, Current TempSrc: {user.TempSrc}");
-
-                        if (dataCommand.Length == 1)
-                        {
-                            user.TempSrc = user.Src;
-                            Console.WriteLine($"Reset to root directory: {user.TempSrc}");
-                        }
-                        else
-                        {
-                            string path = string.Join(" ", dataCommand.Skip(1));
-                            user.TempSrc = Path.Combine(user.TempSrc, path);
-                            Console.WriteLine($"New directory path: {user.TempSrc}");
-                        }
-
-                        // Проверяем существование директории
-                        if (!Directory.Exists(user.TempSrc))
-                        {
-                            Console.WriteLine($"Directory does not exist: {user.TempSrc}");
-                            viewModelMessage = new ViewModelMessage("message", "Directory does not exist");
-                            break;
-                        }
-
-                        var folders = GetDirectory(user.TempSrc);
-                        Console.WriteLine($"Found {folders.Count} items in directory");
-
-                        if (folders.Count == 0)
-                        {
-                            viewModelMessage = new ViewModelMessage("message", "Directory is empty");
-                        }
-                        else
-                        {
-                            string serializedFolders = JsonConvert.SerializeObject(folders);
-                            Console.WriteLine($"Serialized folders: {serializedFolders}");
-                            viewModelMessage = new ViewModelMessage("cd", serializedFolders);
-                        }
-                        break;
+                        return HandleCd(vm);
 
                     case "get":
-                        var currentUser = Users.ElementAtOrDefault(viewModelSend.Id);
-                        if (currentUser == null)
-                        {
-                            viewModelMessage = new ViewModelMessage("message", "User not found");
-                            break;
-                        }
-
-                        string fileName = string.Join(" ", dataCommand.Skip(1));
-                        string filePath = Path.Combine(currentUser.TempSrc, fileName);
-
-                        if (File.Exists(filePath))
-                        {
-                            byte[] fileBytes = await File.ReadAllBytesAsync(filePath);
-                            viewModelMessage = new ViewModelMessage("file", JsonConvert.SerializeObject(fileBytes));
-                        }
-                        else
-                        {
-                            viewModelMessage = new ViewModelMessage("message", "File not found");
-                        }
-                        break;
+                        return await HandleGet(vm, parts);
 
                     default:
-                        // Upload file
-                        var uploadUser = Users.ElementAtOrDefault(viewModelSend.Id);
-                        if (uploadUser != null)
-                        {
-                            FileInfoFTP fileInfo = JsonConvert.DeserializeObject<FileInfoFTP>(viewModelSend.Message);
-                            string uploadPath = Path.Combine(uploadUser.TempSrc, fileInfo.Name);
-                            await File.WriteAllBytesAsync(uploadPath, fileInfo.Data);
-                            viewModelMessage = new ViewModelMessage("message", "File uploaded successfully");
-                        }
-                        else
-                        {
-                            viewModelMessage = new ViewModelMessage("message", "User not found");
-                        }
-                        break;
+                        return await HandleUpload(vm);
                 }
-
-                return JsonConvert.SerializeObject(viewModelMessage);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Command processing error: {ex.Message}");
-                return JsonConvert.SerializeObject(new ViewModelMessage("message", $"Error: {ex.Message}"));
+                return JsonConvert.SerializeObject(new ViewModelMessage("message", ex.Message));
             }
         }
 
-        private static async Task LogCommandAsync(ViewModelSend viewModelSend)
+        private static string HandleCd(ViewModelSend vm)
         {
-            try
-            {
-                using var context = new context();
-                var command = new Command
-                {
-                    User = Users[viewModelSend.Id].Id,
-                    command = viewModelSend.Message
-                };
-                context.Commands.Add(command);
-                await context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Database error: {ex.Message}");
-            }
+            var user = Users[vm.Id];
+
+            if (vm.Message == "cd")
+                user.TempSrc = user.Src;
+            else
+                user.TempSrc = Path.Combine(user.TempSrc, vm.Message[3..]);
+
+            if (!Directory.Exists(user.TempSrc))
+                return JsonConvert.SerializeObject(new ViewModelMessage("message", "Directory not found"));
+
+            var files = Directory.GetDirectories(user.TempSrc).Select(x => Path.GetFileName(x) + "/")
+                .Concat(Directory.GetFiles(user.TempSrc).Select(Path.GetFileName))
+                .ToList();
+
+            return JsonConvert.SerializeObject(new ViewModelMessage("cd", JsonConvert.SerializeObject(files)));
+        }
+
+        private static async Task<string> HandleGet(ViewModelSend vm, string[] parts)
+        {
+            var user = Users[vm.Id];
+            var path = Path.Combine(user.TempSrc, string.Join(" ", parts.Skip(1)));
+
+            if (!File.Exists(path))
+                return JsonConvert.SerializeObject(new ViewModelMessage("message", "File not found"));
+
+            var bytes = await File.ReadAllBytesAsync(path);
+            return JsonConvert.SerializeObject(new ViewModelMessage("file", JsonConvert.SerializeObject(bytes)));
+        }
+
+        private static async Task<string> HandleUpload(ViewModelSend vm)
+        {
+            var user = Users[vm.Id];
+            var file = JsonConvert.DeserializeObject<FileInfoFTP>(vm.Message);
+            var path = Path.Combine(user.TempSrc, file.Name);
+
+            await File.WriteAllBytesAsync(path, file.Data);
+            return JsonConvert.SerializeObject(new ViewModelMessage("message", "File uploaded"));
         }
     }
 }
