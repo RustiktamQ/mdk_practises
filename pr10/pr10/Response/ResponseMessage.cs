@@ -67,6 +67,9 @@ namespace pr10.Response
     /// <summary>
     /// Класс Choice - вариант ответа от модели
     /// </summary>
+    /// <summary>
+    /// Класс Choice - вариант ответа от модели
+    /// </summary>
     public class Choice
     {
         /// <summary>
@@ -85,6 +88,6 @@ namespace pr10.Response
         /// <summary> 
         /// Сообщение, сгенерированное моделью
         /// </summary>
-        public Request.Message message { get; set; }
+        public Request.Message Message { get; set; } = null!;
     }
 }

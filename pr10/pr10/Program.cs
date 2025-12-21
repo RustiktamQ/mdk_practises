@@ -5,8 +5,8 @@ using pr10.Response;
 
 class pr9
 {
-    static string ClientId = "";
-    static string AuthorizationKey = "";
+    static string ClientId = "019b4089-fe1b-7a5c-a167-2d3b664dc135";
+    static string AuthorizationKey = "MDE5YjQwODktZmUxYi03YTVjLWExNjctMmQzYjY2NGRjMTM1OjdlNjBmNDk4LWZiODYtNGU2YS05MGJjLWVjZDdjMmYyYTVmNw==";
 
     /// <summary>
     /// Метод получения токена пользователя
@@ -30,12 +30,12 @@ class pr9
             Console.WriteLine($"Сообщенние: ");
             string Message = Console.ReadLine();
 
-            ResponseMessage Answer = await GetAnswer(ClientId, AuthorizationKey);
-            Console.WriteLine("Ответ: " + Answer.choices[0].message.content);
+            ResponseMessage Answer = await GetAnswer(Message, Token);
+            Console.WriteLine("Ответ: " + Answer.choices[0].Message.content);
         }
     }
 
-    public static async Task<ResponseMessage> GetAnswer(string token, string message)
+    public static async Task<ResponseMessage> GetAnswer(string message, string token)
     {
         // Переменная для хранения объекта ответа от API
         ResponseMessage responseMessage = null;
@@ -84,6 +84,8 @@ class pr9
                 // Отправляем асинхронный запрос и получаем ответ
                 HttpResponseMessage Response = await Client.SendAsync(Request);
 
+                Console.WriteLine(Response.StatusCode);
+
                 // Проверяем успешность HTTP-запроса (статус 200–299)
                 if (Response.IsSuccessStatusCode)
                 {
@@ -103,7 +105,7 @@ class pr9
     public static async Task<string> GetToken(string rqUID, string bearer)
     {
         string ReturnToken = null; // Переменная для хранения полученного токена
-        string Url = "https://ngw.devices.sberbank.ru:9WU3/api/v2/oauth"; // URL endpoint для получения токена
+        string Url = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"; // URL endpoint для получения токена
 
         // Создаем обработчик HTTP-клиента с настройками SSL
         using (HttpClientHandler Handler = new HttpClientHandler())
