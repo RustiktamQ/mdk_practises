@@ -1,4 +1,8 @@
-﻿class pr9
+﻿using Newtonsoft.Json;
+using System.Text;
+using pr10.Models;
+
+class pr9
 {
     static string ClientId = "";
     static string AuthorizationKey = "";
@@ -9,6 +13,84 @@
     /// <param name="RqUID">Клиент ID</param>
     /// <param name="Веагег">Ключ авторизации</param>
     /// <returns>Токен для выполнения запросов</returns>
+    /// 
+    
+    static async Task Main(string[] args)
+    {
+        string Token = await GetToken(ClientId, AuthorizationKey);
+    }
+
+    /// <summary>
+    /// Метод получения ответа
+    /// </summary>
+    /// <param name="token">Токен пользователя</param>
+    /// <param name="message">Сообщение</param>
+    /// <returns></returns>
+
+    public static async Task<ResponseMessage> GetAnswer(string token, string message)
+    {
+        // Переменная для хранения объекта ответа от API
+        ResponseMessage responseMessage = null;
+
+        // URL endpoint для отправки запроса к GigaChat API
+        string Url = "https://gigachat.devices.sberbank.ru/api/v1/chat/completions";
+
+        // Создаем обработчик HTTP-клиента с настройками SSL
+        using (HttpClientHandler Handler = new HttpClientHandler())
+        {
+            // Отключаем проверку SSL-сертификатов
+            Handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) => true;
+
+            // Создаем HTTP-клиент с использованием кастомного обработчика
+            using (HttpClient Client = new HttpClient(Handler))
+            {
+                // Создаем POST-запрос к API чат-комплиментов GigaChat
+                HttpRequestMessage Request = new HttpRequestMessage(HttpMethod.Post, Url);
+
+                // Добавляем заголовки запроса
+                Request.Headers.Add("Accept", "application/json"); // Ожидаем JSON в ответе
+                Request.Headers.Add("Authorization", $"Bearer {token}"); // Токен авторизации для доступа к API
+
+                // Создаем объект запроса с параметрами для модели GigaChat
+                Request DataRequest = new Request()
+                {
+                    model = "GigaChat", // Указываем используемую модель
+                    stream = false, // Отключаем потоковый ответ
+                    repetition_penalty = 1, // Штраф за повторения (1 = без штрафа)
+                    messages = new List<Request.Message>()
+                {
+                    new Request.Message()
+                    {
+                        role = "user", // Роль отправителя сообщения
+                        content = message // Текст сообщения пользователя
+                    }
+                }
+                };
+
+                // Сериализуем объект запроса в JSON строку
+                string JsonContent = JsonConvert.SerializeObject(DataRequest);
+
+                // Создаем содержимое запроса в формате JSON
+                Request.Content = new StringContent(JsonContent, Encoding.UTF8, "application/json");
+
+                // Отправляем асинхронный запрос и получаем ответ
+                HttpResponseMessage Response = await Client.SendAsync(Request);
+
+                // Проверяем успешность HTTP-запроса (статус 200–299)
+                if (Response.IsSuccessStatusCode)
+                {
+                    // Читаем содержимое ответа как строку
+                    string ResponseContent = await Response.Content.ReadAsStringAsync();
+
+                    // Десериализуем JSON-ответ в объект ResponseMessage
+                    responseMessage = JsonConvert.DeserializeObject<ResponseMessage>(ResponseContent);
+                }
+            }
+        }
+
+        // Возвращаем объект ответа (или null, если запрос не удался)
+        return responseMessage;
+    }
 
     public static async Task<string> GetToken(string rqUID, string bearer)
     {
