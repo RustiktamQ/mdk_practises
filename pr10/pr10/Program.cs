@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Text;
 using pr10.Models;
+using pr10.Response;
 
 class pr9
 {
@@ -18,14 +19,21 @@ class pr9
     static async Task Main(string[] args)
     {
         string Token = await GetToken(ClientId, AuthorizationKey);
-    }
 
-    /// <summary>
-    /// Метод получения ответа
-    /// </summary>
-    /// <param name="token">Токен пользователя</param>
-    /// <param name="message">Сообщение</param>
-    /// <returns></returns>
+        if (Token == null) {
+            Console.WriteLine("Не удалось получить токен");
+            return;
+        }
+
+        while (true)
+        {
+            Console.WriteLine($"Сообщенние: ");
+            string Message = Console.ReadLine();
+
+            ResponseMessage Answer = await GetAnswer(ClientId, AuthorizationKey);
+            Console.WriteLine("Ответ: " + Answer.choices[0].message.content);
+        }
+    }
 
     public static async Task<ResponseMessage> GetAnswer(string token, string message)
     {
