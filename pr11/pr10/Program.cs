@@ -36,7 +36,8 @@ namespace APIGigaChatImage
 
             Console.WriteLine("Генерация...");
             string fileId = await GenerateImage(token, prompt);
-            Console.WriteLine("Сгенерилось!!!");
+
+            Console.WriteLine(fileId);
 
             if (!string.IsNullOrEmpty(fileId))
             {
