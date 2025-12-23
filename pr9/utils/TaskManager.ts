@@ -1,5 +1,5 @@
-import { randomUUID } from 'crypto';
-import type { Task } from '../types/Task.ts';
+import { randomUUID } from "crypto";
+import type { Task } from "../types/Task.js";
 
 export class TaskManager {
   private tasks: Task[] = [];
@@ -33,7 +33,15 @@ export class TaskManager {
     return task;
   }
 
-  public delete(id: string) {
-    this.tasks = this.tasks.filter((t) => t.id !== id);
+  public deleteOne(id: string, chatId: number): boolean {
+    const before = this.tasks.length;
+
+    this.tasks = this.tasks.filter((t) => !(t.id === id && t.chatId === chatId));
+
+    return this.tasks.length !== before;
+  }
+
+  public deleteAll(chatId: number) {
+    this.tasks = this.tasks.filter((t) => t.chatId !== chatId);
   }
 }
